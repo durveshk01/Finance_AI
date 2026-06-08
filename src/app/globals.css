@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", "Geist Mono Fallback", ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: "Geist", "Geist Fallback", ui-sans-serif, system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #35d0ba;
+  color: #04110f;
+}
+
+.glass {
+  background: color-mix(in srgb, var(--background) 74%, transparent);
+  border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
+  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.16);
+  backdrop-filter: blur(22px);
+}
+
+.mesh {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(29, 185, 148, 0.24), transparent 28%),
+    radial-gradient(circle at 78% 12%, rgba(58, 126, 255, 0.2), transparent 30%),
+    linear-gradient(135deg, #f8fafc 0%, #e8f6f2 42%, #f4f7fb 100%);
+}
+
+.dark .mesh {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(29, 185, 148, 0.18), transparent 28%),
+    radial-gradient(circle at 78% 12%, rgba(58, 126, 255, 0.16), transparent 30%),
+    linear-gradient(135deg, #04110f 0%, #0b1720 50%, #111827 100%);
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: rgba(20, 184, 166, 0.38);
+  border-radius: 999px;
+}
