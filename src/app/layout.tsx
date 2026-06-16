@@ -13,9 +13,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "FinanceIQ | AI Bank Statement Intelligence",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000"),
+  title: "FinanceIQ - AI Bank Statement Analyzer",
   description:
-    "Upload bank statements and receive AI-powered financial insights, forecasting, budgeting, and a private financial coach.",
+    "Analyze PDF, CSV, and XLSX bank statements with AI-powered spending insights, subscriptions, forecasts, charts, and exportable financial reports.",
+  robots: {
+    index: true,
+    follow: true,
+  },
+  openGraph: {
+    title: "FinanceIQ - AI Bank Statement Analyzer",
+    description:
+      "Analyze PDF, CSV, and XLSX bank statements with AI-powered spending insights, subscriptions, forecasts, charts, and exportable financial reports.",
+    url: "/",
+    siteName: "FinanceIQ",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "FinanceIQ - AI Bank Statement Analyzer",
+    description:
+      "Analyze PDF, CSV, and XLSX bank statements with AI-powered spending insights, subscriptions, forecasts, charts, and exportable financial reports.",
+  },
 };
 
 export default function RootLayout({

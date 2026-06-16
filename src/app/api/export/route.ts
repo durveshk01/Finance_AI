@@ -30,14 +30,14 @@ export async function POST(request: Request) {
 
   if (format === "pdf") {
     const buffer = await reportToPdf(report);
-    return new NextResponse(new Uint8Array(buffer) as BodyInit, {
+    return new NextResponse(new Blob([new Uint8Array(buffer)], { type: "application/pdf" }), {
       headers: { "Content-Type": "application/pdf", "Content-Disposition": "attachment; filename=financeiq-report.pdf" },
     });
   }
 
   if (format === "xlsx") {
     const buffer = await reportToXlsx(report);
-    return new NextResponse(new Uint8Array(buffer as ArrayBuffer) as BodyInit, {
+    return new NextResponse(new Blob([new Uint8Array(buffer as ArrayBuffer)], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" }), {
       headers: {
         "Content-Type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
         "Content-Disposition": "attachment; filename=financeiq-transactions.xlsx",

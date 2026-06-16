@@ -72,6 +72,7 @@ const categoryRules: Record<string, string[]> = {
 export function categorize(description: string, amount: number): string {
   if (amount > 0) return /salary|payroll|income|credit/i.test(description) ? "Salary" : "Income";
   const normalized = description.toLowerCase();
+  if (/credit card|emi|loan|interest/.test(normalized)) return "Debt";
   const match = Object.entries(categoryRules).find(([, tokens]) => tokens.some((token) => normalized.includes(token)));
   return match?.[0] ?? "Other";
 }
@@ -277,7 +278,7 @@ function detectSubscriptions(transactions: Transaction[]): Subscription[] {
       };
     })
     .sort((a, b) => b.annualCost - a.annualCost)
-    .slice(0, 6);
+    .slice(0, 20);
 }
 
 function detectSalary(transactions: Transaction[]) {

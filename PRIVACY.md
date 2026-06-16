@@ -2,6 +2,8 @@
 
 FinanceIQ is designed as a privacy-first bank statement analysis tool.
 
+This document describes the current portfolio implementation. It is not a substitute for a lawyer-reviewed production privacy policy.
+
 ## Data Processed
 
 The app processes uploaded PDF, CSV, and XLSX bank statements to extract transactions and generate financial insights.
@@ -9,6 +11,8 @@ The app processes uploaded PDF, CSV, and XLSX bank statements to extract transac
 ## Storage
 
 The current implementation does not intentionally store uploaded files, parsed transactions, or reports in a database. Data is processed during the request and returned to the browser.
+
+Demo mode uses synthetic data only and is labeled in the interface.
 
 ## AI Processing
 
@@ -27,3 +31,5 @@ Before serving real users, deployers should add:
 - Data retention controls
 - Incident response process
 - Monitoring and audit logs
+- Malware scanning for uploaded files
+- Clear consent language for any third-party AI processing
