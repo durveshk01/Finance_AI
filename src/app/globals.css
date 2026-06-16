@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #000000;
+  --foreground: #ffffff;
 }
 
 @theme inline {
@@ -14,8 +14,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #000000;
+    --foreground: #ffffff;
   }
 }
 
@@ -34,29 +34,65 @@ html {
 }
 
 ::selection {
-  background: #35d0ba;
-  color: #04110f;
+  background: #e50914;
+  color: #ffffff;
 }
 
-.glass {
-  background: color-mix(in srgb, var(--background) 74%, transparent);
-  border: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
-  box-shadow: 0 24px 80px rgba(2, 6, 23, 0.16);
-  backdrop-filter: blur(22px);
-}
-
-.mesh {
+.premium-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   background:
-    radial-gradient(circle at 12% 18%, rgba(29, 185, 148, 0.24), transparent 28%),
-    radial-gradient(circle at 78% 12%, rgba(58, 126, 255, 0.2), transparent 30%),
-    linear-gradient(135deg, #f8fafc 0%, #e8f6f2 42%, #f4f7fb 100%);
+    linear-gradient(145deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.025)),
+    rgba(255, 255, 255, 0.05);
+  box-shadow: 0 22px 80px rgba(0, 0, 0, 0.48);
+  backdrop-filter: blur(24px);
+  transition: border-color 220ms ease, box-shadow 220ms ease, background 220ms ease;
 }
 
-.dark .mesh {
-  background:
-    radial-gradient(circle at 12% 18%, rgba(29, 185, 148, 0.18), transparent 28%),
-    radial-gradient(circle at 78% 12%, rgba(58, 126, 255, 0.16), transparent 30%),
-    linear-gradient(135deg, #04110f 0%, #0b1720 50%, #111827 100%);
+.premium-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 20% 0%, rgba(229, 9, 20, 0.18), transparent 36%);
+  opacity: 0;
+  transition: opacity 220ms ease;
+}
+
+.premium-card:hover {
+  border-color: rgba(255, 59, 59, 0.45);
+  box-shadow: 0 26px 95px rgba(229, 9, 20, 0.22), 0 22px 80px rgba(0, 0, 0, 0.52);
+}
+
+.premium-card:hover::before {
+  opacity: 1;
+}
+
+.premium-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #e50914, #ff3b3b);
+  padding: 0.75rem 1.25rem;
+  font-weight: 900;
+  color: #ffffff;
+  box-shadow: 0 0 38px rgba(229, 9, 20, 0.42);
+  transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+}
+
+.premium-button:hover {
+  transform: translateY(-1px) scale(1.025);
+  box-shadow: 0 0 58px rgba(229, 9, 20, 0.65);
+  filter: saturate(1.12);
+}
+
+.premium-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
 }
 
 .scrollbar-thin::-webkit-scrollbar {
@@ -64,6 +100,12 @@ html {
 }
 
 .scrollbar-thin::-webkit-scrollbar-thumb {
-  background: rgba(20, 184, 166, 0.38);
+  background: rgba(229, 9, 20, 0.55);
   border-radius: 999px;
+}
+
+@media (max-width: 640px) {
+  .premium-card {
+    border-radius: 22px;
+  }
 }
